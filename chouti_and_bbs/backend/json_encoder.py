@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Author  : Coosh
 # @File    : json_encoder.py
 from datetime import datetime, timedelta
 import json

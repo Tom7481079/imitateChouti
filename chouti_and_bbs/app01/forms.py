@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Author  : Coosh
+
 from django import forms
 from .models import *
 import os, sys, datetime, re
