@@ -12,6 +12,6 @@
 
 本程序依赖Pillow，请先安装
 已有测试账号密码如下
-coosh 123
-panny 123
-dan 123
+tom 123
+jack 123
+fly 123

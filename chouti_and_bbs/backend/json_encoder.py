@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @File    : json_encoder.py
 from datetime import datetime, timedelta
 import json
-
 
 class DateTimeJSONEncoder(json.JSONEncoder):
     def default(self, o):

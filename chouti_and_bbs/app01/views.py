@@ -8,7 +8,6 @@ from .forms import *
 from backend.json_encoder import *
 import json, datetime, hashlib, random
 
-
 # 检查登录装饰器
 def check_login(func):
     def wrapper(request, *args, **kwargs):
@@ -18,17 +17,11 @@ def check_login(func):
             return func(request, *args, **kwargs)
         else:
             return HttpResponse(json.dumps({'status': 'fail', 'error': '请先登录'}))
-            # return render(request,
-            #               'app01/upload_result.html',
-            #               {'result': json.dumps({'status': 'fail', 'error': '请先登录'})})
-
     return wrapper
-
 
 # 首页重定向
 def redirect2index(request):
     return redirect("/app01/")
-
 
 # 首页
 def index(request):
@@ -40,7 +33,6 @@ def index(request):
         "visible_catalog": visible_catalog,
         "enable_catalog": enable_catalog,
     })
-
 
 # 用户注册
 def register(request):
@@ -71,7 +63,6 @@ def register(request):
         else:
             return HttpResponse(reg_frm.errors.as_json())
 
-
 # 用户注册时，检查提交的数据是否占用
 def check_exist(request):
     # 检查是否已存在相同的值
@@ -85,7 +76,6 @@ def check_exist(request):
         else:
             return HttpResponse(json.dumps({'status': 'ok'}))
 
-
 def verify_code(request):
     """生成验证码图片"""
     from backend import check_code as CheckCode  # 该check_code是老师的验证码插件
@@ -95,7 +85,6 @@ def verify_code(request):
     stream = BytesIO()
     codeImg.save(stream, 'png')
     return HttpResponse(stream.getvalue(), r'image/png')
-
 
 # 登陆
 def login(request):
@@ -144,13 +133,11 @@ def login(request):
             ret['error'] = '用户名或者密码不能为空'
         return HttpResponse(json.dumps(ret))
 
-
 # 登出
 def logout(request):
     request.session['is_login'] = False
     request.session['current_user'] = {}
     return HttpResponse(json.dumps({'status': 'ok'}))
-
 
 # 用户上传图片
 @check_login
@@ -219,7 +206,6 @@ def upload(request):
                 ret['error'] = '数据不完整，请重新上传'
         return HttpResponse(json.dumps(ret))
 
-
 # 用户发布内容
 @check_login
 def publish(request):
@@ -238,7 +224,6 @@ def publish(request):
         Like.objects.create(user_id=user_id, post_id=post.id)
         ret = {'status': 'ok'}
         return HttpResponse(json.dumps(ret))
-
 
 # 根据用户提交的类别catalog来读取帖子
 def posts(request):
@@ -314,7 +299,6 @@ def like_post(request):
 
         return HttpResponse(json.dumps(ret))
 
-
 @check_login
 def post_comment(request):
     ret = {'status': 'ok'}
@@ -329,7 +313,6 @@ def post_comment(request):
         post.save()
         return HttpResponse(json.dumps(ret))
 
-
 def get_comments(request):
     ret = {'status': 'ok'}
     if request.method == 'GET':
@@ -343,7 +326,6 @@ def get_comments(request):
                                                             "reply_to").order_by('id')
         ret['data'] = list(comments)
         return HttpResponse(json.dumps(ret, cls=DateTimeJSONEncoder))
-
 
 # 获取在线用户
 @check_login

@@ -63,20 +63,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
-
-# class Upload(models.Model):
-#     # 上传文件的信息表
-#     user = models.ForeignKey('User', related_name='uploads')
-#     post = models.ManyToManyField('Post', related_name='uploads')
-#     fname = models.CharField(max_length=64)
-#     fsize = models.PositiveIntegerField()
-#     hash_value = models.CharField(max_length=32)
-#     create_on = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         return self.fname
-
-
 class Like(models.Model):
     user = models.ForeignKey('User', related_name="likes")
     post = models.ForeignKey('Post', related_name="likes")

@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 import os, sys, datetime
 from django.conf.urls import url
 from app01 import views
-
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
